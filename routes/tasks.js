@@ -10,13 +10,12 @@ module.exports = app =>{
 		});
 	})
 	.post((req, res) => {
-		Tasks.create(req.body){
+		Tasks.create(req.body)
 			.then(result => res.json(result))
 			.catch(error => {
-				res.status(412).json({msg> error.message});
-			})
-		}
-	});
+				res.status(412).json({msg: error.message});
+			});
+	})
 
 	app.route("/tasks/:id")
 
