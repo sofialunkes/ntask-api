@@ -19,7 +19,7 @@ module.exports = (sequelize, DataType) => {
 		}
 	},{
 		classMethods: {
-			associate : (models) => {
+			associate : models => {
 				Tasks.belongsTo(models.Users);
 			}
 		}

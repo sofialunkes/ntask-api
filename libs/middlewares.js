@@ -8,4 +8,4 @@ module.exports = app =>{
     delete req.body.id;
     next();
   });
-}
+};
