@@ -5,8 +5,8 @@ module.exports = {
   params : {
     dialect : "mysql",
     logging : false,
-    sync : {
-      force : true
+    sync:{
+      force:true
     },
     define : {
       underscored:true
