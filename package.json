@@ -4,7 +4,8 @@
   "description": "API de gestao de tarefas",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node index.js"
+    "start": "babel-node index.js",
+    "test": "NODE_ENV=test mocha test/**/*.js"
   },
   "author": "Sofia Lunkes",
   "dependencies": {
@@ -19,5 +20,11 @@
     "passport": "^0.3.2",
     "passport-jwt": "^2.0.0",
     "sequelize": "^3.19.2"
+  },
+  "devDependencies": {
+    "babel-register": "^6.5.2",
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "supertest": "^1.2.0"
   }
 }

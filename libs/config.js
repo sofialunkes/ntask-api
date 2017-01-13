@@ -1,8 +1,8 @@
-module.exports = {
-  database: "ntask",
-  username: "root",
-  password: "root",
-  params:{dialect : "mysql", define: {underscored:true}},
-  jwtSecret : "NT@$K - AP1",
-  jwtSession : {session : false}
+module.exports = app => {
+  const env = process.env.NODE_ENV;
+
+  if (env) {
+    return require (`./config.${env}.js`);
+  }
+  return require("./config.development.js");
 };
