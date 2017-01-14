@@ -1,5 +1,6 @@
 describe("Routes: Token", () => {
   const Users = app.db.models.Users;
+
   describe("POST /token", () => {
     beforeEach(done => {
       Users
@@ -9,7 +10,10 @@ describe("Routes: Token", () => {
         email: "john@email.com",
         password: "12345"
       }))
-      .then(done());
+      // this fcking little thing shits the whole test if is not as arrow function
+      //fcking asshole function!
+      .then(() => done());
+      //            ^ FUCK U!
     });
     describe("status 200", () => {
       it("returns authenticated user token", done => {
@@ -29,7 +33,7 @@ describe("Routes: Token", () => {
       it("throws error when password is incorrect", done => {
         request.post("/token")
         .send({
-          email:"john@email.com",
+          email: "john@email.com",
           password:"WRONG_PASSWRD"
         })
         .expect(401)

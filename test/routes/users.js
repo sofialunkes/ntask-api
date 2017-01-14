@@ -35,9 +35,9 @@ describe("Routes: Tasks", () => {
     describe("status 204", () => {
       it("deletes an authenticated user", done => {
         request.delete("/user")
-          .set("Authorization", `JWT ${token}`)
-          .expect(204)
-          .end((err, res) => done(err));
+        .set("Authorization", `JWT ${token}`)
+        .expect(204)
+        .end((err, res) => done(err));
       });
     });
   });

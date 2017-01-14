@@ -9,31 +9,32 @@ describe("Routes: Tasks", () => {
   let fakeTask;
 
   beforeEach(done => {
-    Users
-    .destroy({where : {}})
-    .then (() => Users.create({
-      name: "John",
-      email: "john@email.com",
-      password: "12345"
-    }))
-    .then(user => {
-      Tasks
-      .destroy({ where : {}})
-      .then(() => Tasks.bulkCreate([{
-        id:1,
-        title:"work",
-        user_id: user.id
-      },{
-        id:2,
-        title:"study",
-        user_id: user.id
-      }]))
-      .then(tasks => {
-        fakeTask = tasks[0];
-        token = jwt.encode({id : user.id}, jwtSecret);
-        done();
+      Users
+      .destroy({where : {}})
+      .then (() => Users.create({
+        id: 1,
+        name: "John",
+        email: "john@email.com",
+        password: "12345"
+      }))
+      .then(user => {
+        Tasks
+        .destroy({ where : {}})
+        .then(() => Tasks.bulkCreate([{
+          id:1,
+          title:"work",
+          user_id: user.id
+        },{
+          id:2,
+          title:"study",
+          user_id: user.id
+        }]))
+        .then(tasks => {
+          fakeTask = tasks[0];
+          token = jwt.encode({id : user.id}, jwtSecret);
+          done();
+        });
       });
-    });
   });
 
   describe("GET /tasks", () => {
@@ -56,7 +57,7 @@ describe("Routes: Tasks", () => {
       it("creates a new task", done => {
         request.post("/tasks")
         .set("Authorization", `JWT ${token}`)
-        .send({id:1, title:"run"})
+        .send({title:"run"})
         .expect(200)
         .end((err, res) => {
           expect(res.body.title).to.eql("run");

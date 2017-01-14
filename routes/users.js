@@ -12,12 +12,11 @@ module.exports = app =>{
       res.status(412).json({msg: error.message});
     })
   })
-  app.delete((req, res) => {
-    Users.destroy({
-      where: {
-        id : req.user.id
-      }})
-    .then(result => res.sendStatus(204))
+  .delete((req, res) => {
+    Users.destroy({ where: {  id : req.user.id }})
+    .then(result => {
+      res.sendStatus(204);
+    })
     .catch(error => {
       res.status(412).json ({msg : error.message});
     });
